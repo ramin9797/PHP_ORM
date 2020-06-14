@@ -7,6 +7,7 @@ return [
 	'articles/create'=>['ArticleController','create'],
 	'users'=>['UserController','index'],
 	'user/([0-9]+)'=>['UserController','show'],
+	'authors'=>['AuthorController','index'],
 	''=>['MainController','index'],
 
 ];
