@@ -1,0 +1,317 @@
+#!/usr/bin/env php
+<?php
+
+require_once("NamespaceAutoloader.php");
+
+$object = new NamespaceAutoloader();
+$object->addNamespace("Cmd","cmd");
+$object->addNamespace("App","app");
+$object->register();
+
+
+array_shift($argv);
+$num_of_argvs = count($argv);
+
+
+$array = explode(":", $argv[0]);
+
+$class =ucfirst($array[1]);
+
+$name_of_class = $class;
+$class = "\Cmd\\".$class;
+
+array_shift($argv);
+
+
+
+
+// chain pattern
+
+	
+	interface HandlerCmd{
+		public function setNext($handler);
+		public function handle($key,$value,$filename);
+	}
+
+	abstract class Handler implements HandlerCmd{
+
+		private $nextHandler;
+		
+		public function setNext($handler){
+			$this->nextHandler = $handler;
+			return $handler;
+		}
+
+		public function handle($key,$value,$filename){
+			if($this->nextHandler)
+				return $this->nextHandler->handle($key,$value,$filename);
+			else
+				return null;
+		}
+
+
+	}
+
+	class CreateController extends Handler{
+	
+		public function handle($key,$value,$filename){
+			if($value!==""){
+				if($key=="-name"){
+					
+					if(file_exists("app/Controllers/".$value.".php")){
+						return "This controller was already created"."\n\r";
+					}
+					else{
+						$fh = fopen("app/Controllers/".$value.".php", "w") or die("Создать файл не удалось");
+						$text = <<<_END
+						<?php
+						namespace App\Controllers;	\n\r
+						class $value {
+							//body of controller
+						}
+						_END;
+
+						fwrite($fh,$text);
+						fclose($fh);
+						return "Controller: ".$value." was created successfully"."\n\r";
+					}
+
+				}
+				else
+					return parent::handle($key,$value,$filename);
+			}
+			else{
+				return "Enter value for the key:".$key;
+			}
+
+		}
+
+	}
+
+
+
+	class CreateModel extends Handler{
+	
+		public function handle($key,$value,$filename){
+			if($value!==""){
+				if($key=="-m"){
+
+					$tableName = strtolower($value);
+					$tableName.="s";
+
+				if(file_exists("app/Models/".$value.".php")){
+					return "This Model was already created"."\n\r";
+				}
+				else{
+					$fh = fopen("app/Models/".$value.".php", "w") or die("Создать файл не удалось");
+					$text = <<<_END
+					<?php
+					namespace App\Models;	\n\r
+					class $value extends ActiveRecord {
+						//body of controller\n\r
+						protected static function getTableName(){
+							return "{$tableName}";
+						}
+					}
+					_END;
+
+					fwrite($fh,$text);
+					fclose($fh);
+					return "Model: ".$value." was created successfully"."\n";
+				}
+
+					
+				}
+				else
+					return parent::handle($key,$value,$filename);
+			}
+			else{
+				return "Enter value for the key:".$key;
+			}
+
+		}
+
+	}
+
+	class CreateResource extends Handler{
+
+		public function handle($key,$value,$filename){
+			if($value!==""){
+				if($key=="--r"){
+
+						
+						$lines = file('app/Controllers/'.$filename.".php");
+					for($i=count($lines)-1;$i>=0;$i--)
+						{
+							if(preg_match("/\}/", $lines[$i]))
+								unset($lines[$i]);
+								break;
+						}
+
+
+					$arrays_of_method = ['index','create','show','insert'];
+
+
+
+					//delete existed methods
+
+					$classname = "App\Controllers\\".$filename;
+					
+					$controller = new $classname;
+
+					$existing_methods = new \ReflectionObject($controller);
+
+					// return print_r($existing_methods);
+
+					$methods = $existing_methods->getMethods();
+
+					$all_values = [];
+
+					foreach($methods as $method)
+						$all_values[] = $method->name;
+
+
+					foreach ($arrays_of_method as $key => $value) {
+						if(in_array($value, $all_values))
+							unset($arrays_of_method[$key]);
+					}
+
+
+
+
+					//end of delete block
+
+					$strike_two = "";
+					foreach($arrays_of_method as $method){
+						$strike_two.="\tpublic function ".$method."(){\n\r \t//body of ".$method."\n\r\t}\n\r\n\r";
+					}
+
+
+				
+					$fp = fopen('app/Controllers/'.$filename.".php", 'w') or die("Создать файл не удалось");
+
+					$strike = implode("", $lines);
+					
+					$text = <<<_END
+					$strike
+					$strike_two
+					}
+					_END;
+
+					fwrite($fp, $text);
+					fclose($fp);
+
+					return "Method ".$value." was added to ".$filename;
+
+
+
+				}
+				else
+					return parent::handle($key,$value,$filename);
+			}
+			else{
+				return "Enter value for the key:".$key;
+			}
+
+		}
+
+	}
+
+	class CreateMethod extends Handler{
+
+		public function handle($key,$value,$filename){
+			if($value!==""){
+				if($key=="-f"){
+
+					$classname = "App\Controllers\\".$filename;
+					
+					$controller = new $classname;
+
+					$existing_methods = new \ReflectionObject($controller);
+
+					// return print_r($existing_methods);
+
+					$methods = $existing_methods->getMethods();
+
+					$all_values = [];
+
+					foreach($methods as $method)
+						$all_values[] = $method->name;
+
+					if(in_array($value, $all_values))
+						return 'Method is already existed';
+					else
+					{
+							
+					$lines = file('app/Controllers/'.$filename.".php");
+					for($i=count($lines)-1;$i>=0;$i--)
+						{
+							if(preg_match("/\}/", $lines[$i]))
+								unset($lines[$i]);
+								break;
+						}
+
+
+				
+					$fp = fopen('app/Controllers/'.$filename.".php", 'w') or die("Создать файл не удалось");
+
+					$strike = implode("", $lines);
+					
+					$text = <<<_END
+					$strike
+						public function $value(){
+							//body of $value
+						}
+					}
+					_END;
+
+					fwrite($fp, $text);
+					fclose($fp);
+
+					return "Method ".$value." was added to ".$filename;
+					}
+
+
+				}
+				else
+					return parent::handle($key,$value,$filename);
+			}
+			else{
+				return "Enter value for the key:".$key;
+			}
+		}
+
+	}
+
+
+$create_controller = new CreateController;
+$create_model = new CreateModel;
+$create_method = new CreateMethod;
+$create_resource = new CreateResource;
+
+$create_controller->setNext($create_model)->setNext($create_method)->setNext($create_resource);
+
+
+
+// end of chain
+
+
+
+$name = $argv[0];
+
+if(preg_match("/^[a-zA-Z]+$/", $name)){
+
+	$object = new $class;
+	$ar = $object->getParams($name,$argv);
+	$class::call_all_functions($create_controller);
+
+}
+else{
+	echo "Please enter ".$name_of_class." name"."\n";
+}
+
+
+
+
+
+?>

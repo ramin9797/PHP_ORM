@@ -10,10 +10,7 @@ class Article extends ActiveRecord {
 	protected $author;
 	protected $created_at;
 
-
-
 	protected static function getTableName(){
 		return "articles";
 	}
-
 }

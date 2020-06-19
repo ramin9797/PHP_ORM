@@ -8,6 +8,7 @@ return [
 	'users'=>['UserController','index'],
 	'user/([0-9]+)'=>['UserController','show'],
 	'authors'=>['AuthorController','index'],
+	'author/create'=>['AuthorController','create'],
 	''=>['MainController','index'],
 
 ];
