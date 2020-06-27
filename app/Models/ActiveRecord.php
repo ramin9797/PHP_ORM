@@ -144,10 +144,23 @@ abstract class ActiveRecord {
 		$result = $this->databaseConnect->query($sql,$mapProperties,static::class);
 
 		return $result;
-
 	}
 
+
 // 
+
+
+	// delete object from database
+
+	public function delete($id){
+		$sql = "DELETE FROM ".static::getTableName()." WHERE id=:id";
+
+		$array = [":id"=>$id];
+		$result = $this->databaseConnect->query($sql,$array,static::class);
+		return true;
+	}
+
+	// 
 
 
 

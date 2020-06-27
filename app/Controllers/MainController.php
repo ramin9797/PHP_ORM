@@ -13,7 +13,7 @@ class MainController {
   	$articles = $object->findAll();
 
   	
-  	$template = "home";
+  	$template = "welcome";
 
   	$all_articles = [
   		'articles'=>$articles

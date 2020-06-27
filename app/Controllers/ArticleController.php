@@ -2,17 +2,16 @@
 
 namespace App\Controllers;
 use App\Models\Article;
-
+use App\Views\View;
 class ArticleController{
 
 
 	
 	public function index(){
-		$object = Article::getObject();
-		$id=1;
-		$articles = $object->findAll()->where("id","=",6);
-		print_r($articles);
-		// return $this;
+		
+  	$template = "articles";
+  	View::view($template);
+
 	}
 
 	public function show($id){
@@ -34,7 +33,19 @@ class ArticleController{
 
 	}
 
-	public function create_two($id){
-		
+	public function delete($id){
+		$article = Article::getObject();
+		 
+		 if($article->delete($id))
+		 	echo "Article with id=".$id." was deleted successfully";
+		 else 
+		 	echo "Error";
+	}
+
+	public function api_show(){
+		$object = Article::getObject();
+		$articles = $object->findAll();
+		$articles = json_decode(json_encode($articles), true);
+		echo json_encode($articles);
 	}
 }
