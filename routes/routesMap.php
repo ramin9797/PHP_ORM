@@ -1,12 +1,15 @@
 <?php
 
+namespace Router;
 
-return [
-	'articles'=>['ArticleController','index'],
-	'articles/([0-9]+)'=>['ArticleController','show'],
-	'articles/create'=>['ArticleController','create'],
-	'api/articles'=>['ArticleController','api_show'],
-	'article/delete/([0-9]+)'=>['ArticleController','delete'],
-	''=>['MainController','index'],
+class routesMap{
 
-];
+	public static function all_routes(){
+			Router::get('articles', 'ArticleController@index');
+			Router::get('articles/([0-9]+)','ArticleController@show');
+			Router::get('articles/([0-9]+)','ArticleController@show');
+			Router::get('','MainController@index');
+			Router::check();
+		}
+
+}

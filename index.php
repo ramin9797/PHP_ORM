@@ -2,11 +2,7 @@
 
 require_once("NamespaceAutoloader.php");
 use Router\Router;
-use Database\Database;
-
-
-use App\Models\Article;
-use App\Models\User;
+use Router\routesMap;
 
 
 $object = new NamespaceAutoloader();
@@ -17,20 +13,15 @@ $object->addNamespace("Cmd","cmd");
 $object->register();
 
 
-
-
-
 $url = $_GET['route']??'';
+define("URL_ROUTE", $url);
 
 $home_path = $_SERVER['DOCUMENT_ROOT'];
 $home_path.='/php_projs/project2/';
 
-
-define("URL_ROUTE", $url);
 define("ROOT",$home_path);
+routesMap::all_routes($url);
 
 
 
-$routeObject = new Router();
-$routeObject->run();
 

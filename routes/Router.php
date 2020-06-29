@@ -1,47 +1,42 @@
 <?php
-
 namespace Router;
 
 class Router
 {
+	private static $routes = [];
 
-	private $routes = [];
-
-
-	public function __construct(){
-		$routes = require "routesMap.php";
-		$this->routes = $routes;
+	public static function get($route,$controller_and_action){
+		self::$routes[$route] = $controller_and_action;
 	}
 
-	public  function run(){
+	public static function check(){
+		$url_route = URL_ROUTE;
+		$url_route =  trim($url_route,"/");
 
-		$url = URL_ROUTE;
-		$url = trim($url,"/");
+		$has_route = false;
 
-
-		$hasRoute = false;
-
-		foreach($this->routes as $route=>$controller){
-			if(preg_match("~^$route$~", $url,$matches)){
-				$hasRoute = true;
+		foreach(self::$routes as $route=>$controller_and_action){
+			if(preg_match("~^$route$~", $url_route,$matches)){
+				$has_route = true;
 				array_shift($matches);
-				$parametres =  $matches;
 
-				$controllerName = "\App\Controllers\\".$controller[0];
-				$action = $controller[1];
+				$array = explode("@", $controller_and_action);
 
-				$object = new $controllerName;
-				$object->$action(...$parametres);
+				$controller = $array[0];
+				$action = $array[1];
 
 
-					break;
+				$controller = "\App\Controllers\\".$controller;
+				$object = new $controller;
+				$object->$action(...$matches);
+				break;
 			}
-
-
 		}
 
-		if($hasRoute==false)
-			echo "555 not found";
-	}
+		if(!$has_route){
+			echo "404 not found";
+		}
 
+		
+	}
 }
