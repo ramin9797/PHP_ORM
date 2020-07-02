@@ -24,12 +24,14 @@ class ArticleController{
 
 
 	public function create(){
-		$article = new Article();
+		// $article = new Article();
 
-		$article->title = "New title";
-		$article->content = "New Text";
-		$article->author = "New author";
-		$article->create();
+		// $article->title = "New title";
+		// $article->content = "New Text";
+		// $article->author = "New author";
+		// $article->create();
+
+		echo "create";
 
 	}
 
