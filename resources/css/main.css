@@ -30,3 +30,19 @@
 	background-color: red;
 	color:white;
 }
+
+
+/*auth */
+
+.successes{
+  background-color: green;
+  color:black;
+}
+
+.errors{
+  background-color: red;
+   color:black;
+}
+
+
+/**/

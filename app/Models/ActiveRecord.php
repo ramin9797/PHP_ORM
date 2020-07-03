@@ -141,7 +141,7 @@ abstract class ActiveRecord {
 		$values = implode(",",$values);
 
 		$sql = "INSERT INTO ".static::getTableName()."(".$columns.") VALUES(".$values.")";
-		$result = $this->databaseConnect->query($sql,$mapProperties,static::class);
+		$result = $this->databaseConnect->create($sql,$mapProperties,static::class);
 
 		return $result;
 	}

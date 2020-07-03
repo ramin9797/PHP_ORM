@@ -31,7 +31,6 @@ class Database{
 		$stmt = $this->database->prepare($sql);
 		$stmt->execute($params);
 
-
 		$result = $stmt->fetchAll(\PDO::FETCH_CLASS,$class);
 
 
@@ -39,6 +38,17 @@ class Database{
 
 	}
 
+
+	public function create($sql,$params=[],$class='stdClass'){
+		$stmt = $this->database->prepare($sql);
+		$result = $stmt->execute($params);
+
+		if($result)
+			return true;
+		else
+			return false;
+		
+	}
 
 
 

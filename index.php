@@ -1,5 +1,5 @@
 <?php
-
+session_start(); 
 require_once("NamespaceAutoloader.php");
 use Router\Router;
 use Router\routesMap;
@@ -11,6 +11,7 @@ $object->addNamespace("Router","routes");
 $object->addNamespace("Database","database");
 $object->addNamespace("Cmd","cmd");
 $object->register();
+
 
 
 $url = $_GET['route']??'';

@@ -54,10 +54,12 @@ class Router
 			$url_route = URL_ROUTE;
 			$url_route =  trim($url_route,"/");
 
+			$hasRoute = false;
+
 			 foreach(self::$routes as $route=>$value){
 
 				 	if(preg_match("~^$route$~", $url_route,$matches)){
-
+				 		$hasRoute = true;
 				 		if($value['middleware']){
 				 			// имеет middleware
 				 			self::use_middlewares($value,$matches,$value['middleware']);
@@ -68,6 +70,10 @@ class Router
 				 			self::check($value['contAct'],$matches);
 				 		}
 					}
+				}
+
+				if(!$hasRoute){
+					echo "404 not found";
 				}
 
 		}
