@@ -1,13 +1,16 @@
 import axios from "axios";
-import Article from "./components/Article";
-import Form from "./components/Form";
+// import Article from "./components/Article";
+// import Home from "./components/Home";
 window._ = require('lodash');
+
+
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
+
 
 try {
     window.Popper = require('popper.js').default;
@@ -16,5 +19,4 @@ try {
     require('bootstrap');
 } catch (e) {}
 
-
-// const axios = require('axios').default;
+import  "../scss/main.scss";

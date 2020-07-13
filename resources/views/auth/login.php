@@ -7,8 +7,6 @@
 </head>
 <body>
 
-
-
 	<div class="errors">
 		<?php 
 		if(isset($_SESSION['create-user-errors'])){
@@ -31,9 +29,9 @@
 
 	<div class="successes">
 		<?php 
-		if(isset($_SESSION['create-user-success']))
-			echo $_SESSION['create-user-success'];
-		 ?>
+		if(isset($_SESSION['create-user-success'])){?>
+			<p><?php echo $_SESSION['create-user-success'];?></p>
+		<?php } ?>
 	</div>
 
 	<?php
@@ -42,7 +40,7 @@
 	 ?>
 
 
-	<form action="login/create" method="POST">
+	<form action="register/create" method="POST">
 		<input type="hidden" required="required" name="csrf_token" value="<?php  echo $csrf_token;?>" >
 		<input  type="text" required="required" name="name" placeholder="Name">
 		<input type="email" required="required" name="email" placeholder="Email">

@@ -12,10 +12,7 @@ abstract class ActiveRecord {
 
 
 	public function getObject(){
-		if(static::$object==null)
 			return static::$object = new static();
-		else 
-			return static::$object;
 	}
 
 	

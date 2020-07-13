@@ -35,17 +35,13 @@ class UserController{
 
 	public function create(){
 
-		//all errors and successes
-			// $sessions['create-user-errors'] = [];
-			// $sessions['create-user-successes'] = [];
-			$errors = [];
-			$_SESSION['create-user-success'] = "";
-		//
+		$errors = [];
+		$_SESSION['create-user-success'] = "";
 
-		$url =  $_SERVER['HTTP_REFERER'];
-		//get all data from form
+		$url = "register";
 
-		$name =$_POST['name'];
+
+		$name = $_POST['name'];
 		$csrf_token = $_POST['csrf_token'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
@@ -53,10 +49,6 @@ class UserController{
 		//xss defeat
 			$name = Defeat::xss_defeat($name);
 		// 
-
-
-		//
-		// $sessions['create-user-errors']
 
 		if(!preg_match("/^[a-zA-Z_-]{4,}$/", $name)){
 			$errors[] = "Никнейм должен содержать от 4 символов и состоять из латинских букв";
@@ -70,33 +62,31 @@ class UserController{
 		}
 
 
-		if(!$_SESSION['scrf_token']===$csrf_token){
-			$errors[] = "Scrf_attack";
+		if(!$_SESSION['csrf_token']===$csrf_token){
+			$errors[] = "CSRF ATTACK";
 		}
 
-		$_SESSION['create-user-errors'] = $errors;
 
-
-		if($_SESSION['create-user-errors'])
-			{
-				 Redirect::redirect($url,$_SESSION);			
-			}
-		else{
 			$new_user = new User();
 			$new_user->name = $name;
 			$new_user->email = $email;
 			$new_user->password = $password;
 			
-			if($new_user->create())
-				$_SESSION['create-user-success'] = "Пользователь был успешно создан";
+			if(!$errors){
+				if($new_user->create()){
+					$success = "Пользователь был успешно создан";
+					Redirect::redirect($url,'create-user-success',$success);
+				}
+			}
 			else
 			{
-				$_SESSION['create-user-errors'] = "Произошла ошибка при создание Пользователя";
-				Redirect::redirect($url, $_SESSION);
+				$errors[] = "Произошла ошибка при создание Пользователя";
+				Redirect::redirect($url,'create-user-errors',$errors);
 			}	
 
-			    Redirect::redirect($url,$_SESSION);
-		}
-
 	}
+
+
+
+
 }

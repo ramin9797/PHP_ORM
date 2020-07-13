@@ -5,8 +5,8 @@ namespace App\Useful_funcs;
 class Defeat{
 
 	public static function csrf_defeat(){
-		$_SESSION['scrf_token'] =  bin2hex(random_bytes(32));
-		return $_SESSION['scrf_token'];
+		$_SESSION['csrf_token'] =  bin2hex(random_bytes(32));
+		return $_SESSION['csrf_token'];
 	}
 
 	public static function xss_defeat($var){
