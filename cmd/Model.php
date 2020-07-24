@@ -1,17 +1,14 @@
 <?php
 
 namespace Cmd;
+use Cmd\Base\BaseCmd;
 
 class Model{
 
-	// public function __construct(){
-	// 	echo 'Controller Model';
-	// }
+use BaseCmd;
 
-	public function getParams($array){
-		return $array;
-	}
-
-
+public function getClass(){
+	echo 'Model Cmd';
+}
 
 }

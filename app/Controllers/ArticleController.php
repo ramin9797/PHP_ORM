@@ -8,9 +8,14 @@ class ArticleController{
 
 	
 	public function index(){
-		
-  	$template = "articles";
-  	View::view($template);
+
+		$object = Article::getObject();
+		$articles = $object->findAll()->where('id','>','20')->AndWhere('id','<','24')->get();
+		print_r($articles);
+		// foreach ($articles as $key => $value) {
+		// 	echo $value->title.$value->id;
+		// 	echo "<br>";
+		// }
 
 	}
 
@@ -24,18 +29,24 @@ class ArticleController{
 
 
 	public function create(){
-		// $article = new Article();
 
-		// $article->title = "New title";
-		// $article->content = "New Text";
-		// $article->author = "New author";
-		// $article->create();
+		$article = new Article();
 
-		echo "create";
+		$article->title = "New title";
+		$article->text = "New Text";
+
+		
+
+		if($article->create())
+			echo "create";
+		else
+			echo "error";
+		
 
 	}
 
 	public function delete($id){
+		
 		$article = Article::getObject();
 		 
 		 if($article->delete($id))

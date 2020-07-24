@@ -9,7 +9,9 @@ abstract class ActiveRecord {
 	private static $object;
 	private $databaseConnect;
 	private $key;
-
+	private $sql;
+	private $params = [];
+	private $for_pdo_params = 1;
 
 	public function getObject(){
 			return static::$object = new static();
@@ -44,62 +46,50 @@ abstract class ActiveRecord {
 
 	public function findAll(){
 		$sql = "SELECT * FROM ".static::getTableName();
-		$result = $this->databaseConnect->query($sql,[],static::class);
 
-		$object = new static;
+		$this->params = [];
 
-		
-		foreach ($result as $key => $value)
-		{
+		$this->sql =$sql;
 
-			$object->$key = $value;
-		}
+		return $this;
 
-		return $object;
+
 
 	}
 
 	public function findById($id){
-
 		$sql = "SELECT * FROM ".static::getTableName()." WHERE id=:id";
 		$params = ["id"=>$id];
 
 		$result = $this->databaseConnect->query($sql,$params,static::class);
-		return $result;
+
+		foreach($result as $key =>$value){
+			return $value;
+		}
+		
 	}
 
 
 	public function where($propertyName,$operator,$propertyValue){
-      	$articles = $this;
 
-      	$result = [];
+		$pdo_name = ":".$propertyName."".$this->for_pdo_params++;
 
-      	foreach ($articles as $key => $value)
-		{
-			if(preg_match("~[0-9]+~", $key)){
 
-				if($articles->toOperator($value,$propertyName,$operator,$propertyValue)){
-					print_r($value);
-				}
+		$this->params[$pdo_name] = $propertyValue;
 
-			}
-		}
+		$this->sql .= " WHERE ".$propertyName."$operator".$pdo_name;
+		return $this;
 
 	}
 
-	private function toOperator($object,$propertyName,$operator,$propertyValue){
-		switch ($operator) {
-			case '>':
-				return $object->$propertyName>$propertyValue;
-				break;
-			case '<':
-				return $object->$propertyName<$propertyValue;
-				break;
-			case '=':
-				return $object->$propertyName==$propertyValue;
-				break;
-			
-		}
+	public function AndWhere($propertyName,$operator,$propertyValue){
+
+		$pdo_name = ":".$propertyName.$this->for_pdo_params++;
+
+		$this->params[$pdo_name] = $propertyValue;
+
+		$this->sql .= " AND  ".$propertyName.$operator.$pdo_name;
+		return $this;
 	}
 
 
@@ -158,6 +148,16 @@ abstract class ActiveRecord {
 	}
 
 	// 
+
+	public function get(){	
+
+			$sql = $this->sql;
+			$params = $this->params;
+
+			
+			$result = $this->databaseConnect->query($sql,$params,static::class);
+			return $result;
+	}
 
 
 

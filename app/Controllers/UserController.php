@@ -8,6 +8,11 @@ use App\useful_funcs\Redirect;
 
 class UserController{
 
+
+	public function test(){
+		return 'UserController';
+	}
+
 	public function index(){
 		$object = new User();
 		$users = $object->findAll();

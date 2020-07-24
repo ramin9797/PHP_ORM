@@ -1,6 +1,9 @@
 <?php
 session_start(); 
 require_once("NamespaceAutoloader.php");
+
+require_once 'vendor/autoload.php';
+
 use Router\Router;
 use Router\routesMap;
 
@@ -22,7 +25,6 @@ $home_path.='/php_projs/project2/';
 
 define("ROOT",$home_path);
 routesMap::all_routes($url);
-
 
 
 

@@ -11,25 +11,31 @@ class MainController {
   public function index(){
 
   	$object = Article::getObject();
-  	$articles = $object->findAll();
+  	$articles = $object->findAll()->get();
 
-    $object2 = Categories::getObject();
-    $all_categories = $object2->findAll();
+    // $object2 = Categories::getObject();
+    // $categories = $object2->findAll()->get();
 
-  	
   	$template = "welcome";
-
-  	$all_articles = [
-      'all_categories'=>$all_categories,
-  		'articles'=>$articles
-  	];
-
+    $data = [
+      'name'=>'ramin',
+      'articles'=>$articles,
+      // 'categories'=>$categories,
+    ];
   	
 
-  	View::view($template,$all_articles);
+  	View::view($template,$data);
 
-  	
+  }
 
+  public function mainpage(){
+
+    // $object2 = Categories::getObject();
+    // $categories = $object2->findAll()->get();
+
+    $template = 'homepage';
+    $data = ['name'=>'messi'];
+    View::view($template,$data);
 
   }
 

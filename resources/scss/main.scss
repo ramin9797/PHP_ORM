@@ -1,0 +1,5 @@
+@import 'mixins';
+
+#delete-cat{
+	@include nice-button;
+}

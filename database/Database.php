@@ -28,6 +28,7 @@ class Database{
 
 	public function query($sql,$params=[],$class='stdClass'){
 
+		
 		$stmt = $this->database->prepare($sql);
 		$stmt->execute($params);
 

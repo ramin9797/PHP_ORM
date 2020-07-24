@@ -3,10 +3,8 @@
 namespace Cmd;
 use Cmd\Base\BaseCmd;
 
+class Template{
 
-
-class Controller{
-
-	use BaseCmd;
+use BaseCmd;
 
 }

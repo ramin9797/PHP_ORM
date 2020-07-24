@@ -21,9 +21,9 @@ export default class Article extends React.Component {
 
  		axios.get('api/articles').then(response => {
 
- 			$this.setState({
- 				data:response.data
- 			})
+		$this.setState({
+			data:response.data
+		})
 
  		}).catch(error =>{
  			console.log(error)
