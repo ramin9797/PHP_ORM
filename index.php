@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-require_once("NamespaceAutoloader.php");
+// require_once("NamespaceAutoloader.php");
 
 require_once 'vendor/autoload.php';
 
@@ -8,12 +8,12 @@ use Router\Router;
 use Router\routesMap;
 
 
-$object = new NamespaceAutoloader();
-$object->addNamespace("App","app");
-$object->addNamespace("Router","routes");
-$object->addNamespace("Database","database");
-$object->addNamespace("Cmd","cmd");
-$object->register();
+// $object = new NamespaceAutoloader();
+// $object->addNamespace("App","app");
+// $object->addNamespace("Router","routes");
+// $object->addNamespace("Database","database");
+// $object->addNamespace("Cmd","cmd");
+// $object->register();
 
 
 
