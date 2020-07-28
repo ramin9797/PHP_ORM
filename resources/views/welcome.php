@@ -1,28 +1,28 @@
-{% extends "layouts/layout1.php" %}
+<?php require_once("resources/views/layouts/header.php")?>
 
-{% block title %}Welcome Page{% endblock %}
-{% block head %}
-    {{ parent() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
-{% endblock %}
+<main class="content">
 
-{% block content %}
-    <h1>Index</h1>
-    <p class="important">
-        Welcome to my awesome welcomepage.
-    </p>
+    <article>
 
-    <ul>
 
-    	{% for article in articles  %}
-			<li>{{article.title}}</li>
-    	{% endfor %}
-    	
+    <?php foreach ($articles  as $article) {?>
+    <p><?php echo $article->title;  ?></p>
 
-    </ul>
+    <?php   } ?>
+        
+    </article>
 
 
 
-{% endblock %}
+
+    
+
+    <?php require_once("resources/views/layouts/aside.php")?>
+
+</main>
+
+<?php require_once("resources/views/layouts/footer.php")?>
+
+
+
+

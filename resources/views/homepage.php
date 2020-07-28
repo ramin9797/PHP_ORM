@@ -1,4 +1,4 @@
-{% extends "layouts/layout1.php" %}
+{% extends "layouts/layout2.php" %}
 
 {% block title %}Welcome Page{% endblock %}
 {% block head %}

@@ -8,11 +8,6 @@ use App\useful_funcs\Redirect;
 
 class UserController{
 
-
-	public function test(){
-		return 'UserController';
-	}
-
 	public function index(){
 		$object = new User();
 		$users = $object->findAll();
@@ -67,9 +62,11 @@ class UserController{
 		}
 
 
-		if(!$_SESSION['csrf_token']===$csrf_token){
+		if($_SESSION['csrf_token']!==$csrf_token){
 			$errors[] = "CSRF ATTACK";
 		}
+
+
 
 
 			$new_user = new User();
@@ -80,13 +77,13 @@ class UserController{
 			if(!$errors){
 				if($new_user->create()){
 					$success = "Пользователь был успешно создан";
-					Redirect::redirect($url,'create-user-success',$success);
+					Redirect::redirect($url,'user_create_success',$success);
 				}
 			}
 			else
 			{
 				$errors[] = "Произошла ошибка при создание Пользователя";
-				Redirect::redirect($url,'create-user-errors',$errors);
+				Redirect::redirect($url,'user_create_errors',$errors);
 			}	
 
 	}

@@ -14,7 +14,7 @@
 
             <div class="menu">
                 <ul>
-                    <?php foreach($all_categories as $catagory){?>
+                    <?php foreach($categories as $catagory){?>
                     <li><a href="<?php echo $catagory->route_name; ?>">
                         <?php echo $catagory->name;?>
                     </a></li>

@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>All articles</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../project2/resources/css/main.css">
-</head>
-<body>
+<?php require_once("resources/views/layouts/header.php");?>
 
+<main class="content">
+
+	<article>
+	
 	<div class="errors">
 		<?php 
-		if(isset($_SESSION['create-user-errors'])){
-			$errors = $_SESSION['create-user-errors'];
+		if(isset($_SESSION['user_create_errors'])){
+			$errors = $_SESSION['user_create_errors'];
 				if(is_array($errors)){
-					foreach($_SESSION['create-user-errors'] as $error) {
+					foreach($_SESSION['user_create_errors'] as $error) {
 						?>
 						<li><?php echo $error;  ?></li>
 
@@ -29,24 +26,42 @@
 
 	<div class="successes">
 		<?php 
-		if(isset($_SESSION['create-user-success'])){?>
-			<p><?php echo $_SESSION['create-user-success'];?></p>
+		if(isset($_SESSION['user_create_success'])){?>
+			<p><?php echo $_SESSION['user_create_success'];?></p>
 		<?php } ?>
 	</div>
 
 	<?php
-	unset($_SESSION['create-user-success']);
-	unset($_SESSION['create-user-errors']);
+	unset($_SESSION['user_create_success']);
+	unset($_SESSION['user_create_errors']);
 	 ?>
 
+	<div class="div-register-form">
+				
 
-	<form action="register/create" method="POST">
-		<input type="hidden" required="required" name="csrf_token" value="<?php  echo $csrf_token;?>" >
-		<input  type="text" required="required" name="name" placeholder="Name">
-		<input type="email" required="required" name="email" placeholder="Email">
-		<input type="password" required="required"  name="password" placeholder="Password">
-		<input type="submit" value="Create">
-	</form>
+				<form action="register/create" class="register-form" method="POST">
+					<h2>Регистрация</h2>
+					<input type="hidden" required="required" name="csrf_token" value="<?php echo $csrf_token; ?>" >
+					<input  type="text" required="required" name="name" placeholder="Name">
+					<input type="email" required="required" name="email" placeholder="Email">
+					<input type="password" required="required"  name="password" placeholder="Password">
+					<input type="submit" class="register-form-submit" value="Create">
+				</form>
+	</div>
+		
+	</article>
 
-</body>
-</html>
+
+
+
+	
+
+	<?php require_once("resources/views/layouts/aside.php")?>
+
+</main>
+
+<?php require_once("resources/views/layouts/footer.php")?>
+
+
+
+

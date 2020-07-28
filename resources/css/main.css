@@ -258,3 +258,51 @@ footer {
 
 
 /**/
+
+
+/*register*/
+.div-register-form{
+  display:flex;
+  justify-content: center;
+}
+
+
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:25px 45px;
+  box-shadow: 0px 2px 23px -5px rgba(199,109,199,1);
+  background-color: #9BD065;
+}
+
+
+.register-form h2{
+  border-radius: 2px;
+  display: block;
+  padding:15px;
+  color:#FCFFFB;
+}
+
+.register-form input{
+  border-radius: 2px;
+  display: block;
+  padding:5px;
+  line-height: 20px;
+  outline: none;
+  border:none;
+  margin:10px;
+  /*color:#11270A;*/
+  box-shadow: 0px 2px 23px -5px rgba(199,109,199,1);
+}
+
+.register-form-submit{
+  background-color:#214915;
+  color:#A8D899;
+  cursor: pointer;
+}
+
+
+
+/*
