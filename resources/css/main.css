@@ -258,10 +258,15 @@ footer {
 }
 
 .errors{
-   background-color: #ff9575;
+   background-color: #d45731;
    margin:10px;
    color:white;
    border-radius: 5px;
+}
+
+.errors p{
+   font-size: 17px;
+  padding:10px;
 }
 
 .errors li{

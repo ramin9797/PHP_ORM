@@ -1,5 +1,7 @@
 <?php
 namespace Router;
+use App\Models\User;
+use App\useful_funcs\Redirect;
 
 class Router
 {
@@ -81,8 +83,18 @@ class Router
 
 	public static function use_middlewares($value,$matches,$middlewares){
 
-			$author_list = ["ramin","hacker","admin"];
-			$author = "admin";
+			$author_list = [];
+
+			if(isset($_COOKIE['logged_user'])){
+				$author = $_COOKIE['logged_user'];
+			}
+
+			$obj = User::getObject();
+			$authors =  $obj->findAll()->get();
+
+			foreach ($authors as $key => $author_obj) {
+				$author_list[] = $author_obj->email;
+			}
 
 			$all_middlewares = [
 					'auth' => '\App\Middlewares\AuthMiddleware',
@@ -111,7 +123,10 @@ class Router
 						self::check($value['contAct'],$matches);
 					}
 					else
-						echo "У вас нет прав доступа к этой странице";
+						{
+							$url = "";
+							Redirect::redirect($url,"access_error","Туда нельзя --)");
+						}
 					
 			}
 			else{
@@ -135,7 +150,8 @@ class Router
 					self::check($value['contAct'],$matches);
 				}
 				else{
-					echo "У вас нет прав доступа к этой странице";
+					$url = "";
+					Redirect::redirect($url,"access_error","Туда нельзя--)");
 				}
 
 

@@ -8,7 +8,7 @@ class routesMap{
 
 			// 
 			Router::get('','MainController@index');
-			Router::get('mainpage','MainController@mainpage')->middleware(["auth","admin"]);
+			Router::get('mainpage','MainController@mainpage')->middleware(["auth"]);
 			// 
 
 
