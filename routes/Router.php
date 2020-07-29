@@ -79,13 +79,14 @@ class Router
 		}
 
 
-		public static function use_middlewares($value,$matches,$middlewares){
+	public static function use_middlewares($value,$matches,$middlewares){
+
 			$author_list = ["ramin","hacker","admin"];
 			$author = "admin";
 
 			$all_middlewares = [
 					'auth' => '\App\Middlewares\AuthMiddleware',
-					'hack' => '\App\Middlewares\hackMiddleware',
+					'hack' => '\App\Middlewares\HackMiddleware',
 					'admin' => '\App\Middlewares\AdminMiddleware',
 			];
 
@@ -101,6 +102,7 @@ class Router
 			}
 
 			// print_r($uses_middlewares);
+			// return true;
 
 			if(count($middlewares)===1){	
 					$run_middlewares = new $uses_middlewares[0];
@@ -113,13 +115,23 @@ class Router
 					
 			}
 			else{
-				$run_middlewares = new $uses_middlewares[0];
+				
+				$run_middlewares = [];
 
-				for($i=1;$i<count($uses_middlewares);$i++){
-					$run_middlewares->linkWith(new $uses_middlewares[$i]);
+				for($i=0;$i<count($uses_middlewares);$i++){
+					$object = new $uses_middlewares[$i];
+					$run_middlewares[] = $object;
 				}
 
-				if($run_middlewares->check($author,$author_list)){
+				for($i=0;$i<count($run_middlewares);$i++){
+					if(isset($run_middlewares[$i+1]))
+						$run_middlewares[$i]->linkWith($run_middlewares[$i+1]);
+				}
+
+				$first_handler = $run_middlewares[0];
+
+
+				if($first_handler->check($author,$author_list)){
 					self::check($value['contAct'],$matches);
 				}
 				else{
@@ -130,7 +142,7 @@ class Router
 				
 			}
 
-		}
+	}
 
 
 

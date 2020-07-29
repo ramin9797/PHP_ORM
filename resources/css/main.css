@@ -104,15 +104,58 @@ header{
     flex-shrink: 1;
     color:#FFFFF5;
     align-self: center;
+    position: relative;
   }
 
-  .search-login a{
+.user-settings{
+  position: absolute;
+  top:100%;
+  color:white;
+  background-color: #6f7d73;
+  /*border-radius: 6px;*/
+  /*padding:10px 20px;*/
+  animation:show_hide 0s ease-out;
+  animation-fill-mode:both;
+}
+
+@keyframes show_hide{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.user-settings li{
+  list-style-type: none;
+}
+
+.user-settings li a{
+  padding:10px 28px;
+  width: 100%;
+}
+
+
+.user-settings li a:hover{
+  background-color:#c1dec9;
+  color:#6c736e;
+}
+
+  .modal-hidden{
+    display: none;
+  }
+
+
+
+.search-login a{
     font-size: 18px;
     display: inline-block;
     text-decoration: none;
     color:white;
     padding:0 10px;
   }
+
 
 /*end of header*/
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import Article from "./components/Categories";
+// import Article from "./components/Categories";
 // import Home from "./components/Home";
 window._ = require('lodash');
 
@@ -20,3 +20,4 @@ try {
 } catch (e) {}
 
 import  "../scss/main.scss";
+import "../js/main.js";

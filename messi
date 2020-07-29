@@ -2,12 +2,9 @@
 <?php
 
 
-require_once("NamespaceAutoloader.php");
+require_once 'vendor/autoload.php';
 
-$object = new NamespaceAutoloader();
-$object->addNamespace("Cmd","cmd");
-$object->addNamespace("App","app");
-$object->register();
+
 
 array_shift($argv);
 $num_of_argvs = count($argv);
@@ -60,9 +57,6 @@ for ($i=0; $i<count($before_use_handlers); $i++) {
 	$obj = new $handler;
 	$handle_objects[] = $obj;
 }
-
-
-
 
 for ($i=0; $i <count($handle_objects) ; $i++) { 
 	if(isset($handle_objects[$i+1])){	

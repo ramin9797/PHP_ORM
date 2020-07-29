@@ -8,7 +8,7 @@ class routesMap{
 
 			// 
 			Router::get('','MainController@index');
-			Router::get('mainpage','MainController@mainpage');
+			Router::get('mainpage','MainController@mainpage')->middleware(["auth","admin"]);
 			// 
 
 
@@ -24,7 +24,10 @@ class routesMap{
 			Router::get('users','UserController@index');
 			Router::get('register','UserController@create_form');
 			Router::get('register/create','UserController@create');
-
+			Router::get('login','UserController@create_login_form');
+			Router::get('login/check','UserController@login_check');
+			Router::get("user/cabinet","UserController@user_cabinet");
+			Router::get("user/logout","UserController@user_logout");
 			//
 			
 

@@ -34,8 +34,17 @@ class Database{
 
 		$result = $stmt->fetchAll(\PDO::FETCH_CLASS,$class);
 
-
-		return $result;
+		$count = $stmt->rowCount();
+		
+			if($result){
+					if($count>1){
+						return $result;
+					}
+					else{
+						$one_obj = $result[0];
+						return $one_obj;
+					}
+			}
 
 	}
 

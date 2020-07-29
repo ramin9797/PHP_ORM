@@ -3,13 +3,17 @@
 <head>
     <title>Welcome homme page</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="./resources/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URL_MAIN; ?>resources/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="<?php echo URL_MAIN; ?>resources/bundle.js"></script>
 </head>
 <body>
 
         <header class="main_header">
 			<div class="logo-of-site">
-               <img src="./resources/images/site-icon.png" alt="site-icon" class="icon-site-img"/>
+              <a href="/php_projs/project2/">
+                <img src="<?php echo URL_MAIN; ?>resources/images/site-icon.png" alt="site-icon" class="icon-site-img"/>
+              </a> 
             </div>
 
             <div class="menu">
@@ -22,8 +26,23 @@
                 </ul>
             </div>
 
+
             <div class="search-login">
-                <a href="register">Login</a>
-                <a href="register">Register</a>
+
+                <?php if(isset($_COOKIE['logged_user'])){?>
+                    <a href="#" class="show_user_settings">User</a>
+                    
+                    <div class="user-settings modal-hidden"> 
+                        <li><a href="user/cabinet">Cabinet</a></li>
+                        <li><a href="user/logout">Logout</a></li>
+                    </div>
+
+
+              <?php } ?>
+
+                <?php if(!isset($_COOKIE['logged_user'])){?>
+                    <a href="login">Login</a>
+                    <a href="register">Register</a>
+              <?php } ?>
             </div>
 		</header>
