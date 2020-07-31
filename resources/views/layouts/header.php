@@ -3,9 +3,12 @@
 <head>
     <title>Welcome homme page</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <script src="<?php echo URL_MAIN; ?>resources/bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo URL_MAIN; ?>resources/css/main.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="<?php echo URL_MAIN; ?>resources/bundle.js"></script>
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+
 </head>
 <body>
 

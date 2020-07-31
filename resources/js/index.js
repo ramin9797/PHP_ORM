@@ -1,8 +1,11 @@
-import axios from "axios";
+// import axios from "axios";
+// import $ from 'jquery';  
+// window.jQuery = $; window.$ = $;
 // import Article from "./components/Categories";
 // import Home from "./components/Home";
 window._ = require('lodash');
 
+// import "jquery/dist/jquery.min.js";
 
 
 /**
@@ -13,9 +16,6 @@ window._ = require('lodash');
 
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-
     require('bootstrap');
 } catch (e) {}
 

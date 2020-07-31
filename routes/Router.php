@@ -88,6 +88,9 @@ class Router
 			if(isset($_COOKIE['logged_user'])){
 				$author = $_COOKIE['logged_user'];
 			}
+			else{
+				$author = "";
+			}
 
 			$obj = User::getObject();
 			$authors =  $obj->findAll()->get();
@@ -98,7 +101,7 @@ class Router
 
 			$all_middlewares = [
 					'auth' => '\App\Middlewares\AuthMiddleware',
-					'hack' => '\App\Middlewares\HackMiddleware',
+					'noauth' => '\App\Middlewares\NoAuthMiddleware',
 					'admin' => '\App\Middlewares\AdminMiddleware',
 			];
 

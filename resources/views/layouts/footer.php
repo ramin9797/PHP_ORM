@@ -1,4 +1,4 @@
-        <footer>
+<footer>
 
             <div class="footer-social-icons">
                 <i class="fa fa-youtube social_icons"></i>
@@ -19,4 +19,3 @@
             </div>
 
         </footer>
-		

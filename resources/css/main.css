@@ -6,6 +6,7 @@
 
 html{
   height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 body {
   display: flex;
@@ -203,6 +204,52 @@ footer {
   background-color: #424242;
 }
 
+.footer-social-icons{
+  align-self: center;
+  padding:10px;
+}
+
+.footer-rules{
+  align-self: center;
+}
+
+.footer-rules li{
+  list-style-type: none;
+  display: inline-block;
+  padding:5px 10px;
+  font-size: 18px;
+}
+
+.footer-rules li a{
+  text-decoration: none;
+  color:white;
+}
+.footer-rules li a:hover{
+   color:#A1A192;
+}
+
+.contacts-info{
+  align-self: center;
+  color:#92A1A1;
+  margin-top:30px;
+}
+
+.social_icons{
+  color:white;
+  background-color: #525252;
+  margin-left:4px;
+  font-size: 30px;
+  padding:5px 10px;
+  border-radius: 4px;
+
+}
+
+.social_icons:hover{
+  cursor: pointer;
+  color:white;
+  background: orange;
+}
+
 
 
 
@@ -354,3 +401,6 @@ footer {
 
 
 /*
+
+
+
