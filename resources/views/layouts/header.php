@@ -4,10 +4,10 @@
     <title>Welcome homme page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-     <script src="<?php echo URL_MAIN; ?>resources/bundle.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo URL_MAIN; ?>resources/css/main.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="<?php echo URL_MAIN; ?>resources/css/main.css">
+
 
 </head>
 <body>

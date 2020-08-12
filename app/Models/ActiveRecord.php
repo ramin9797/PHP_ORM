@@ -63,10 +63,19 @@ abstract class ActiveRecord {
 
 		$result = $this->databaseConnect->query($sql,$params,static::class);
 
-		foreach($result as $key =>$value){
-			return $value;
-		}
+		return $result;
+		// foreach($result as $key =>$value){
+		// 	print_r($value);
+		// }
 		
+	}
+
+
+	public function last(){
+		$sql = "SELECT * FROM ".static::getTableName()." ORDER BY id DESC LIMIT 1";
+		$result = $this->databaseConnect->query($sql,[],static::class);
+
+		return $result;
 	}
 
 

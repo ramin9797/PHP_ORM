@@ -38,6 +38,15 @@ class routesMap{
 			Router::get("api/all_cats","CategoryController@api_show");
 			Router::get("category/delete/([0-9]+)","CategoryController@delete");
 
+
+
+			// for test
+				Router::get("test","TestController@index");
+				Router::get("test/create/([a-zA-Z\s]+)","TestController@create_task");
+				Router::get("api/test_show","TestController@test_show");
+				Router::get("test/delete/([0-9]+)","TestController@test_delete");
+			// 
+
 			Router::get_all();
 		}
 

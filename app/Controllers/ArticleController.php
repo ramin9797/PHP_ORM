@@ -9,9 +9,9 @@ class ArticleController{
 	
 	public function index(){
 
-		$object = Article::getObject();
-		$articles = $object->findAll()->where('id','>','20')->AndWhere('id','<','24')->get();
-		print_r($articles);
+		// $articles = $object->findAll()->where('id','>','20')->AndWhere('id','<','24')->get();
+		// print_r($articles);
+		
 		// foreach ($articles as $key => $value) {
 		// 	echo $value->title.$value->id;
 		// 	echo "<br>";
