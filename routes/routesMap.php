@@ -7,16 +7,29 @@ class routesMap{
 	public static function all_routes(){	
 
 			// 
-			Router::get('','MainController@index');
+			Router::get('','MainController@pag_pages');
+			Router::get('page-([0-9]+)',"MainController@pag_pages");
+
+
+
 			Router::get('mainpage','MainController@mainpage')->middleware(["auth"]);
+
 			// 
 
 
-			Router::get('articles', 'ArticleController@index')->middleware(["auth","admin"]);
+			//
+			// Router::get("category/([a-zA-Z])","CategoryController@get_this_cat_articles");
+			 Router::get("category/([a-zA-Z]+)","CategoryController@get_this_cat_articles");
+			 Router::get("category/([a-zA-Z]+)/page-([0-9])","CategoryController@get_this_cat_articles");
+			//
+
+
+			Router::get('articles', 'ArticleController@index');
 			Router::get('articles/([0-9]+)','ArticleController@show');
-			Router::get("articles/create","ArticleController@create");
+			Router::get("articles/create","ArticleController@create")->middleware(["auth","admin"]);
 			Router::get("articles/delete/([0-9]+)","ArticleController@delete");
 			Router::get("api/articles","ArticleController@api_show");
+			Router::get("articles/get_editor_data","ArticleController@get_editor_data");
 
 
 			//
@@ -45,6 +58,17 @@ class routesMap{
 				Router::get("test/create/([a-zA-Z\s]+)","TestController@create_task");
 				Router::get("api/test_show","TestController@test_show");
 				Router::get("test/delete/([0-9]+)","TestController@test_delete");
+
+
+				// 
+
+
+				
+				Router::get("test/react","TestController@test_react");
+				Router::get("test/get_pdf","TestController@get_pdf");
+
+
+				Router::get("test/pdf","TestController@test_pdf");
 			// 
 
 			Router::get_all();

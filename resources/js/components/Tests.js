@@ -11,12 +11,11 @@ export default class Tests extends React.Component{
           input:'',
           items:[],
           art_create_suc_state:true,
-          li_show:true,
-          last_id_li:'',
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
 
+        this.li_ref = React.createRef()
 
     }
 
@@ -25,15 +24,13 @@ export default class Tests extends React.Component{
     UNSAFE_componentWillMount(){
         let self = this;
 
-        axios.get("api/test_show").then(response=>{
-          // console.log(response.data)
+        axios.get("../api/test_show").then(response=>{
           const data = response.data
           if(Array.isArray(data))
             {
                 if(response.data){
                     self.setState({
-                        items:data,
-                         li_show:true,
+                        items:data
                     })
                   }
             }
@@ -56,6 +53,7 @@ export default class Tests extends React.Component{
 
 
 
+
     handleChange(event){
         
         this.setState({
@@ -67,37 +65,27 @@ export default class Tests extends React.Component{
     handleSubmit(event){
         event.preventDefault()
        const item = this.state.input
-
-
-
-       const  art_create_suc = this.state.art_create_suc_state
+       const art_create_suc = this.state.art_create_suc_state
 
        if(this.state.input){
 
-           axios.post('test/create/'+item).then(response=>{
+           axios.post('../test/create/'+item).then(response=>{
                const new_task = {'task':item,'id':response.data}
                 this.setState({
                     items:[...this.state.items,new_task],
                     input:'',
                     art_create_suc_state: !art_create_suc,
-                    last_id_li:response.data,
-                    li_show:true
                 })
 
-                setTimeout(() => {
-                     this.setState({
-                         art_create_suc_state: !this.state.art_create_suc_state,
-                     })
-
-                }, 1600);
+                 const show_hide_element = this.li_ref.current;
+                show_hide_element.classList.toggle('hide_block')
 
                 setTimeout(() => {
                      this.setState({
-                      li_show:!this.state.li_show
+                         art_create_suc_state: !this.state.art_create_suc_state
                      })
 
-                }, 1000);
-
+                }, 1500);
 
 
            }).catch(error =>{
@@ -108,7 +96,9 @@ export default class Tests extends React.Component{
 
     }
 
-
+    componentDidUpdate(){
+      // console.log(this.li_ref.current)
+    }
 
     handleDelete(item){
 
@@ -116,7 +106,9 @@ export default class Tests extends React.Component{
 
         new_list.splice(new_list.indexOf(item),1)
 
-        axios.delete('test/delete/'+item.id).then(response=>{
+        // console.log(item.id)
+
+        axios.delete('../test/delete/'+item.id).then(response=>{
             console.log(response.data)
 
                this.setState({
@@ -135,7 +127,7 @@ export default class Tests extends React.Component{
         return(
                 <div className='test-div'>
 
-                <div ref='art_create_suc' className={`test_success  ${this.state.art_create_suc_state?"hide_block":"show_block"}`  }>
+                <div ref={this.li_ref} className={`test_success  ${this.state.art_create_suc_state?"hide_block":"show_block"}`  }>
                     <p>Article was created successfully!Cooool,man ))</p>
                 </div>
 
@@ -148,7 +140,7 @@ export default class Tests extends React.Component{
 
                     <ul>
                         {this.state.items? this.state.items.map((item,index) => 
-                            <li className={`test_block_li ${this.state.last_id_li==item.id&&this.state.li_show?"hide_block":"show_block"}`} key={index}>{item.task}
+                            <li ref={this.li_state} className="test_block_li" key={index}>{item.task}
                                 <button onClick={this.handleDelete.bind(this,item)}>Delete</button>
                             </li>
                          ):null}
@@ -166,3 +158,4 @@ export default class Tests extends React.Component{
 
 if(document.getElementById('react_test'))
   ReactDOM.render(<Tests/>,document.getElementById('react_test'))
+

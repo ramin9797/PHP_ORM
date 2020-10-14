@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-
-
-
-
-
   $(".show_user_settings").on("click",function(){
 	if( $('.user-settings').hasClass('modal-hidden') ) {
 		$('.user-settings').removeClass('modal-hidden');

@@ -52,10 +52,9 @@ abstract class ActiveRecord {
 		$this->sql =$sql;
 
 		return $this;
-
-
-
 	}
+
+
 
 	public function findById($id){
 		$sql = "SELECT * FROM ".static::getTableName()." WHERE id=:id";
@@ -64,9 +63,7 @@ abstract class ActiveRecord {
 		$result = $this->databaseConnect->query($sql,$params,static::class);
 
 		return $result;
-		// foreach($result as $key =>$value){
-		// 	print_r($value);
-		// }
+		
 		
 	}
 
@@ -158,6 +155,20 @@ abstract class ActiveRecord {
 
 	// 
 
+	// Pagination
+
+	public function get_pag_data($current_page,$limit){
+		$offset = ($current_page-1)*$limit;
+
+		$sql = " LIMIT ".$limit." OFFSET ".$offset;
+		$this->sql.= $sql;
+
+		return $this;
+
+	}
+
+
+
 	public function get(){	
 
 			$sql = $this->sql;
@@ -167,6 +178,8 @@ abstract class ActiveRecord {
 			$result = $this->databaseConnect->query($sql,$params,static::class);
 			return $result;
 	}
+
+
 
 
 

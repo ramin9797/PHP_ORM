@@ -23,6 +23,9 @@
 
 
     "require": {
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0",
+		"fpdf/fpdf": "^1.82",
+		"knplabs/knp-snappy": "^1.2",
+		"mpdf/mpdf": "^8.0"
     }
 }

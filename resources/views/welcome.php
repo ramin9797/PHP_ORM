@@ -33,11 +33,28 @@
 	unset($_SESSION['access_error']);
 	 ?>
 
+	 <div class="category_articles">
+		 	<?php foreach ($pag_data  as $article) {?>
 
-    <?php foreach ($articles  as $article) {?>
-    <p><?php echo $article->title;  ?></p>
+		 		<a href="<?php echo URL_MAIN; ?>article/<?php echo $article->id;  ?>">
+			 		<div class="category_article">
 
-    <?php   } ?>
+			 			<div class="cat_image">
+			 				<img class="cat_articles_images" src="<?php echo $article->image ?>">
+			 			</div>
+			 			
+			 			<div class="cat_title">
+			 				  <p><?php echo $article->title;  ?></p>
+			 			</div>
+
+					    
+				    </div>
+			    </a>
+	  		<?php } ?>
+	 </div>
+
+	 <p><?php echo $pagination; ?></p>
+    
         
     </article>
 

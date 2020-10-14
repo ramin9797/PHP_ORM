@@ -4,7 +4,7 @@
     <title>Welcome homme page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo URL_MAIN; ?>node_modules/font-awesome/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="<?php echo URL_MAIN; ?>resources/css/main.css">
 
@@ -22,7 +22,7 @@
             <div class="menu">
                 <ul>
                     <?php foreach($categories as $catagory){?>
-                    <li><a href="<?php echo $catagory->route_name; ?>">
+                    <li><a href="<?php echo URL_MAIN; ?>category/<?php echo $catagory->route_name; ?>/">
                         <?php echo $catagory->name;?>
                     </a></li>
                     <?php } ?>
@@ -36,16 +36,16 @@
                     <a href="#" class="show_user_settings">User</a>
                     
                     <div class="user-settings modal-hidden"> 
-                        <li><a href="user/cabinet">Cabinet</a></li>
-                        <li><a href="user/logout">Logout</a></li>
+                        <li><a href="<?php echo URL_MAIN; ?>user/cabinet">Cabinet</a></li>
+                        <li><a href="<?php echo URL_MAIN; ?>user/logout">Logout</a></li>
                     </div>
 
 
               <?php } ?>
 
                 <?php if(!isset($_COOKIE['logged_user'])){?>
-                    <a href="login">Login</a>
-                    <a href="register">Register</a>
+                    <a href="<?php echo URL_MAIN; ?>login">Login</a>
+                    <a href="<?php echo URL_MAIN; ?>register">Register</a>
               <?php } ?>
             </div>
 		</header>

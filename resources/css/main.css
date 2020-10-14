@@ -476,3 +476,314 @@ footer {
 
 
 /**/
+
+
+/**/
+
+.category_articles{
+display: flex;
+flex-direction: column;
+}
+
+.category_articles a{
+  text-decoration: none;
+}
+
+.category_article:hover{
+  background-color: #70B984;
+}
+
+
+
+.category_article{
+  display: flex;
+  background-color: #53785D;
+  margin:20px;
+  color:white;
+  box-shadow: 2px 0px 58px -2px rgba(195,214,210,0.45);
+}
+
+
+.cat_title{
+  flex-basis: 70%;
+  font-size: 18px;
+  padding:10px 20px;
+}
+
+.cat_image{
+  flex-grow: 30%;
+
+
+}
+
+
+.cat_articles_images{
+  max-width: 100%;
+  width:300px;
+  height: auto;
+  padding:10px;
+}
+
+
+
+/**/
+
+
+
+/*pagination*/
+.main_pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:30px;
+}
+
+.main_pagination a{
+  text-decoration: none;
+}
+
+
+.pag_pages{
+  display: inline-block;
+  padding:12px;
+  font-size: 18px;
+  font-family: serif;
+}
+
+.main_pagination a:hover{
+  color:white;
+  background-color: #ff9078;
+}
+
+.current_page{
+  background-color: #e3b6b3;
+}
+
+.no_current_pages{
+
+}
+
+.left_pag{
+  display: inline-block;
+ padding:12px;
+  font-size: 18px;
+  font-family: serif;
+}
+
+.right_pag{
+    display: inline-block;
+  padding:12px;
+  font-size: 18px;
+  font-family: serif;
+}
+/**/
+
+
+/*test pdf*/
+.div_pdf{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:50px;
+  background-color: #313B47;
+}
+
+.react_test_2_inline{
+  display: flex;
+   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cv_settings{
+  background-color: #d5eb8f;
+  display: flex;
+  width: 70%;
+  padding: 30px 10px;
+}
+.cv_settings a{
+  text-decoration: none;
+  color:green;
+  font-size: 19px;
+}
+
+.cv_settings a:hover{
+  color:#161c02;
+}
+
+.pdf_header{
+  background-color: #e6a25a;
+  display: flex;
+  width: 70%;
+  padding: 30px 10px;
+}
+
+.user_informations{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 5;
+}
+
+.user_informations input{
+  padding:5px 10px;
+  margin:10px;
+  border: none;
+  box-shadow: none;
+  border-width: 0;
+  background-color: inherit;
+  color:white;
+  font-size: 1em;
+}
+input:focus{
+    outline: none;
+}
+
+.user_information input:focus{
+  outline: none;
+  background-color: red;
+}
+
+.user_avatar{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  position: relative;
+}
+
+.pfd_avatar_image{
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+ border-radius: 50%;
+}
+
+.user_avatar img:hover{
+   box-shadow: 0 0 2px 1px grey;
+  cursor: pointer;
+
+}
+
+#image_avatar{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.user_avatar_settings{
+  position: absolute;
+  top:-30px;
+  background-color: #313B47;
+  color:white;
+  border-radius: 20px;
+  padding: 4px 9px;
+}
+
+/*.user_avatar_settings label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+.pdf_header label:hover {
+    color:#6fd966;
+    cursor: pointer;
+}
+
+.delete_avatar{
+  margin-left: 10px;
+}
+
+
+.user_avatar_settings .delete_avatar:hover {
+    color:red;
+    cursor: pointer;
+}
+
+.fa-user-circle{
+  display: inline-block;
+  max-width: 100%;
+
+     color: #fff;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 6.5em;
+}
+
+.fa-user-circle:hover{
+  text-shadow: 4px 4px 4px grey;
+  cursor: pointer;
+}
+
+.pdf_avatar_submit{
+  background-color: green;
+  color:white;
+  padding:5px;
+  border:0;
+  outline:0;
+  border-radius:10px;
+  margin:10px;
+}
+.pdf_avatar_submit:hover{
+  cursor: pointer;
+  color:black;
+}
+
+.upload_pdf{
+  border:0;
+  outline: none;
+  background-color: #68bd3e;
+  color:white;
+  padding:5px 10px;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+.upload_pdf:hover{
+  cursor: pointer;
+  background-color: #38b54d;
+}
+/**/
+
+
+/**/
+.mpdf_div{
+
+}
+.mpdf_left{
+  float: left; width: 50%; margin-bottom: 0pt;
+}
+.mpdf_right{
+  float: right; width: 50%; margin-bottom: 0pt; 
+}
+
+.mpdf_user_name{
+  font-size: 20px;
+}
+
+
+.mpdf_img{
+   float: left;
+   width: 230px;
+   max-width: 100%;
+   height: auto;
+   border-radius: 50%;
+   padding:10px;
+
+}
+
+.mpdf_user_name{
+font-size: 25px;
+}
+
+.mpdf_user_profession{
+  font-size: 17px;
+}
+.mpdf_user_more_info{
+  font-size: 16px;
+}
+/**/

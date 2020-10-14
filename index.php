@@ -10,6 +10,11 @@ use Router\routesMap;
 $url = $_GET['route']??'';
 define("URL_ROUTE", $url);
 
+
+
+// define("CURRENT_URL",$_SERVER['REQUEST_URI']);
+
+
 $localhost_url = "http://localhost/php_projs/project2/";
 define("URL_MAIN",$localhost_url);
 

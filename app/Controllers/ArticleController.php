@@ -16,6 +16,7 @@ class ArticleController{
 		// 	echo $value->title.$value->id;
 		// 	echo "<br>";
 		// }
+		View::view('articles/index',[]);
 
 	}
 
@@ -60,5 +61,10 @@ class ArticleController{
 		$articles = $object->findAll();
 		$articles = json_decode(json_encode($articles), true);
 		echo json_encode($articles);
+	}
+
+	public function get_editor_data(){
+		 $editor_data = $_POST[ 'content' ];
+		 echo $editor_data;
 	}
 }

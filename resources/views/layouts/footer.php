@@ -8,9 +8,9 @@
             </div>
 
             <div class="footer-rules">
-                <li><a href="#">Условия использования</a></li>
-                <li><a href="#">Конфиденциальность</a></li>
-                <li><a href="#">О сайте</a></li>
+                <li><a href="<?php echo URL_MAIN; ?>#">Условия использования</a></li>
+                <li><a href="<?php echo URL_MAIN; ?>#">Конфиденциальность</a></li>
+                <li><a href="<?php echo URL_MAIN; ?>#">О сайте</a></li>
             </div>
 
             <div class="contacts-info">

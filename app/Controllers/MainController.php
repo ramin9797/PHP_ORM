@@ -5,28 +5,49 @@ namespace App\Controllers;
 use App\Views\View;
 use App\Models\Article;
 use App\Models\Categories;
+use App\Useful_funcs\Pagination;
 
 class MainController {
 
-  public function index(){
 
-  	$object = Article::getObject();
-  	$articles = $object->findAll()->get();
+  public function pag_pages($current_page=1){
 
-    // $object2 = Categories::getObject();
-    // $categories = $object2->findAll()->get();
+      $template = 'welcome';
+   
 
-  	$template = "welcome";
-    $data = [
-      'name'=>'ramin',
-      'articles'=>$articles,
-      // 'categories'=>$categories,
-    ];
-  	
+        $object = Article::getObject();
+        $articles = $object->findAll()->get();
 
-  	View::view($template,$data);
+
+
+
+        $count_of_articles = count($articles);
+        $max_articles_in_one_page = 6;
+
+
+        $pagination = new Pagination($count_of_articles,$max_articles_in_one_page,$current_page);
+        $pag_navigation =  $pagination->get_pag();
+
+        $pag_data = $object->findAll()->get_pag_data($current_page,$max_articles_in_one_page)->get();
+
+
+        // $pag_data = $object->get_pag_data($current_page,$max_articles_in_one_page)->get();
+        // print_r($pag_data);
+        // return true;
+
+         $data = [
+          'pag_data'=>$pag_data,
+          'pagination'=>$pag_navigation
+          ];
+
+      View::view($template,$data);
+
+        
 
   }
+
+
+
 
   public function mainpage(){
 

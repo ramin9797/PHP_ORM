@@ -68,7 +68,7 @@ class UserController{
 			$name = Defeat::xss_defeat($name);
 		// 
 
-		if(!preg_match("/^[a-zA-Z_-]{4,}$/", $name)){
+		if(!preg_match("/^[a-zA-Z0-9_-]{4,}$/", $name)){
 			$errors[] = "Никнейм должен содержать от 4 символов и состоять из латинских букв";
 		}
 
@@ -143,6 +143,9 @@ class UserController{
 
 		 $object = User::getObject();
 		 $user= $object->findAll()->where("email","=",$email)->get();
+		 $user = $user[0];
+
+
 
 		 if($user&&!$errors){
 		 	 if(password_verify($password, $user->password)){
