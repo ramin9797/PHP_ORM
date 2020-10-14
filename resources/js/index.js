@@ -1,14 +1,10 @@
 import axios from "axios";
 window._ = require('lodash');
 
-// import Article from "./components/Categories";
-// import Home from "./components/Home";
-import Tests from "./components/Tests";
-
-import Test2 from "./components/Tests2";
+import Article from "./components/Article";
 
 
-// import "jquery/dist/jquery.min.js";
+
 
 
 try {

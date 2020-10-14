@@ -15,30 +15,26 @@ class MainController {
       $template = 'welcome';
    
 
-        $object = Article::getObject();
-        $articles = $object->findAll()->get();
+        // $object = Article::getObject();
+        // $articles = $object->findAll()->get();
 
+        // $count_of_articles = count($articles);
+        // $max_articles_in_one_page = 6;
 
-
-
-        $count_of_articles = count($articles);
-        $max_articles_in_one_page = 6;
-
-
-        $pagination = new Pagination($count_of_articles,$max_articles_in_one_page,$current_page);
-        $pag_navigation =  $pagination->get_pag();
-
-        $pag_data = $object->findAll()->get_pag_data($current_page,$max_articles_in_one_page)->get();
-
+        // $pagination = new Pagination($count_of_articles,$max_articles_in_one_page,$current_page);
+        // $pag_navigation =  $pagination->get_pag();
+        // $pag_data = $object->findAll()->get_pag_data($current_page,$max_articles_in_one_page)->get();
 
         // $pag_data = $object->get_pag_data($current_page,$max_articles_in_one_page)->get();
         // print_r($pag_data);
         // return true;
 
-         $data = [
-          'pag_data'=>$pag_data,
-          'pagination'=>$pag_navigation
-          ];
+         // $data = [
+         //  'pag_data'=>$pag_data,
+         //  'pagination'=>$pag_navigation
+         //  ];
+
+        $data = [];
 
       View::view($template,$data);
 
@@ -48,16 +44,5 @@ class MainController {
 
 
 
-
-  public function mainpage(){
-
-    // $object2 = Categories::getObject();
-    // $categories = $object2->findAll()->get();
-
-    $template = 'homepage';
-    $data = ['name'=>'messi'];
-    View::view($template,$data);
-
-  }
 
 }
